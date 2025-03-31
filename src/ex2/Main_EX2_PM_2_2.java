@@ -1,17 +1,16 @@
 package ex2;
 
-import java.util.Scanner;
 import java.util.Random;
+import java.util.Scanner;
 
-public class Main_EX2_PM_2_5 {
+public class Main_EX2_PM_2_2 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
 
-        System.out.print("please enter k:");
+        System.out.print("Please enter k: ");
         int k = scanner.nextInt();
         int size = k + 2;
-
         char[][] array = new char[size][size];
 
         for (int i = 0; i < size; i++) {
@@ -26,12 +25,11 @@ public class Main_EX2_PM_2_5 {
 
         int maxEmpty = k * k;
         int c;
-
         while (true) {
-            System.out.print("please enter max dot (maximum:" + maxEmpty + "): ");
+            System.out.print("Please enter max dot (maximum: " + maxEmpty + "): ");
             c = scanner.nextInt();
             if (c <= maxEmpty) break;
-            System.out.println("the entered number is incorrect");
+            System.out.println("The entered number is incorrect");
         }
 
         int placed = 0;
@@ -47,15 +45,23 @@ public class Main_EX2_PM_2_5 {
         int x = 1;
         int y = 1;
         array[x][y] = 'X';
+        int score = 0;
+        long start = System.currentTimeMillis();
 
         scanner.nextLine();
-
         while (true) {
-            System.out.print("your move(w/a/s/d/q)");
+            for (int i = 0; i < size; i++) {
+                for (int j = 0; j < size; j++) {
+                    System.out.print(array[i][j] + " ");
+                }
+                System.out.println();
+            }
+
+            System.out.print("Your move (w/a/s/d/q): ");
             String input = scanner.nextLine();
 
             if (input.length() != 1) {
-                System.out.println("just enter a character");
+                System.out.println("Just enter a character");
                 continue;
             }
 
@@ -64,32 +70,36 @@ public class Main_EX2_PM_2_5 {
             int newY = y;
 
             if (dir == 'q') {
-                System.out.println("exit");
+                System.out.println("Exit");
                 break;
             } else if (dir == 'w') newX--;
             else if (dir == 's') newX++;
             else if (dir == 'a') newY--;
             else if (dir == 'd') newY++;
             else {
-                System.out.println("invalid character");
+                System.out.println("Invalid character");
                 continue;
             }
 
             if (array[newX][newY] == '*') {
-                System.out.println("hitting the game wall");
+                System.out.println("Hitting the game wall");
             } else {
+                if (array[newX][newY] == '.') {
+                    score++;
+                }
                 array[x][y] = ' ';
                 x = newX;
                 y = newY;
                 array[x][y] = 'X';
 
-                for (int i = 0; i < size; i++) {
-                    for (int j = 0; j < size; j++) {
-                        System.out.print(array[i][j] + " ");
-                    }
-                    System.out.println();
+                if (score == c) {
+                    long finish = System.currentTimeMillis();
+                    long timeElapsed = finish - start;
+                    System.out.println("Game over! Score: " + score + ", Time: " + timeElapsed + "ms");
+                    break;
                 }
             }
         }
+        scanner.close();
     }
 }
