@@ -2,10 +2,10 @@ package ex2;
 
 import java.util.Scanner;
 
-public class Main_EX2_PM_2_1 {
+public class Main_EX2_PM_1_2 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("please enter k:gi");
+        System.out.print("please enter k:");
         int k = scanner.nextInt();
         int size = k + 2;
         char[][] array = new char[size][size];
@@ -24,6 +24,5 @@ public class Main_EX2_PM_2_1 {
             }
             System.out.println();
         }
-        scanner.close();
     }
 }
