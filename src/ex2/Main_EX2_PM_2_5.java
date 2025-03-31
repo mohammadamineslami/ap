@@ -3,7 +3,7 @@ package ex2;
 import java.util.Scanner;
 import java.util.Random;
 
-public class Main_EX2_PM_1_5 {
+public class Main_EX2_PM_2_5 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
